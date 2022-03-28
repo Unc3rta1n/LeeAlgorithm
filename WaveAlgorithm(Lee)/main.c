@@ -74,7 +74,7 @@ void printsolve()
 bool SolveMaze()
 {
     bool foundEnd = false;
-    int it = 0;
+    int dist = 0;
     while (!foundEnd)
     {
         bool foundEmpty = false;
@@ -82,7 +82,7 @@ bool SolveMaze()
         {
             for (int y = 0; y < HEIGHT; ++y)
             {
-                if (gridArray[x][y] == it)
+                if (gridArray[x][y] == dist)
                 {
                     // check east cell
                     if (x < WIDTH - 1)
@@ -90,12 +90,12 @@ bool SolveMaze()
                         if (gridArray[x + 1][y] == -3)
                         {
                             foundEnd = true;
-                            gridArray[x + 1][y] = it + 1;
+                            gridArray[x + 1][y] = dist + 1;
                             break;
                         }
                         else if (gridArray[x + 1][y] == -1)
                         {
-                            gridArray[x + 1][y] = it + 1;
+                            gridArray[x + 1][y] = dist + 1;
                             foundEmpty = true;
                         }
                     }
@@ -105,12 +105,12 @@ bool SolveMaze()
                         if (gridArray[x - 1][y] == -3)
                         {
                             foundEnd = true;
-                            gridArray[x - 1][y] = it + 1;
+                            gridArray[x - 1][y] = dist + 1;
                             break;
                         }
                         else if (gridArray[x - 1][y] == -1)
                         {
-                            gridArray[x - 1][y] = it + 1;
+                            gridArray[x - 1][y] = dist + 1;
                             foundEmpty = true;
                         }
                     }
@@ -120,12 +120,12 @@ bool SolveMaze()
                         if (gridArray[x][y + 1] == -3)
                         {
                             foundEnd = true;
-                            gridArray[x][y + 1] = it + 1;
+                            gridArray[x][y + 1] = dist + 1;
                             break;
                         }
                         else if (gridArray[x][y + 1] == -1)
                         {
-                            gridArray[x][y + 1] = it + 1;
+                            gridArray[x][y + 1] = dist + 1;
                             foundEmpty = true;
                         }
                     }
@@ -135,12 +135,12 @@ bool SolveMaze()
                         if (gridArray[x][y - 1] == -3)
                         {
                             foundEnd = true;
-                            gridArray[x][y - 1] = it + 1;
+                            gridArray[x][y - 1] = dist + 1;
                             break;
                         }
                         else if (gridArray[x][y - 1] == -1)
                         {
-                            gridArray[x][y - 1] = it + 1;
+                            gridArray[x][y - 1] = dist + 1;
                             foundEmpty = true;
                         }
                     }
@@ -152,7 +152,7 @@ bool SolveMaze()
             printf_s("This maze has no solution!\n");
             return false;
         }
-        it++;
+        dist++;
     }
     return true;
 }
@@ -198,8 +198,6 @@ void find_path()
             continue;
         }
     }
-
-
 }
 
 int main()
